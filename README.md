@@ -4,18 +4,18 @@ This repository contains instructions and code for running SLM Lab in Google Col
 
 ## Files
 
-- `FreewayRL.ipynb`: Notebook with step-by-step instructions to set up and run SLM Lab in Google Colab.
-- `AtariFreewayRLExperiments.pdf`: PDF document presenting the Atari Freeway Game and the experiments conducted.
+- `FreewayRL.ipynb`: Notebook with step-by-step instructions to set up and run SLM Lab in Google Colab
+- `AtariFreewayRLExperiments.pdf`: PDF document presenting the Atari Freeway Game and the experiments conducted [3]
 - `RL folder`: Folder that should be copied to your Google Drive account if you want to make your life easier when running SLM Lab in Google Colab
 - `RL\configs folder`: Folder that contains all my configuration files for the algorithms I trained on Atary Freeway
-- `RL\*.py`: Modified files from SLM Lab Repository [1] in order to make it work in Google Colab.
+- `RL\*.py`: Modified files from SLM Lab Repository [1] in order to make it work in Google Colab
 - `RL\Roms.rar`: Atari Mania ROM Collection [4]
 
 
 ## Prerequisites
 
-- A Google account to use Google Colab and Google Drive.
-- Basic knowledge of Python and Jupyter Notebooks.
+- A Google account to use Google Colab and Google Drive
+- Basic knowledge of Python and Jupyter Notebooks
 
 
 ## Instructions
@@ -51,10 +51,12 @@ This repository contains instructions and code for running SLM Lab in Google Col
 !pip install pyvirtualdisplay
 !pip install -U kaleido
 ```
-* We need to modify some files from SLM Lab.
+* We need to modify some files from SLM Lab
 
   *SLM-Lab/slm_lab/spec/random_baseline.py: comment `import roboschool` (line 7)*
+  
   *SLM-Lab/slm_lab/env/vec_env.py: `np.bool_` instead of `np.bool` (line 22)*
+  
   *SLM-Lab/slm_lab/env/openai.py: comment `import roboschool` (line 10)*
 
 > [!TIP]
@@ -65,35 +67,34 @@ This repository contains instructions and code for running SLM Lab in Google Col
   Extract it's content and run: `!python -m atari_py.import_roms /content/SLM-Lab/HCROMS`
 
 > [!TIP]
-> You can upload it to Google Drive as Roms.rar and extract it by running: `!unrar x /content/drive/MyDrive/RL/Roms.rar`
+> You can upload it to Google Drive as Roms.rar and extract it by running: `!unrar x /content/drive/MyDrive/RL/Roms.rar`.
 
 EXTRA:
 * If you want to run DQN PER: *SLM-Lab/slm_lab/agent/memory/prioritized.py: `int` instead of `np.int` (line 144)*
-* If you want to run A2C, A3C or PPO: *SLM-Lab/slm_lab/agent/__init__.py: update line 158-173*
-  ```
-  row = pd.Series({
-            'epi': self.env.clock.epi,
-            't': env.clock.t,
-            'wall_t': wall_t,
-            'opt_step': self.env.clock.opt_step,
-            'frame': frame,
-            'fps': fps,
-            'total_reward': total_reward,
-            'total_reward_ma': np.nan,  # update outside
-            'loss': self.loss.cpu().item() if torch.is_tensor(self.loss) else self.loss,
-            'lr': self.get_mean_lr(),
-            'explore_var': self.explore_var,
-            'entropy_coef': self.entropy_coef.cpu().item() if hasattr(self, 'entropy_coef') and torch.is_tensor(self.entropy_coef) else (self.entropy_coef if hasattr(self, 'entropy_coef') else np.nan),
-            'entropy': self.mean_entropy.cpu().item() if torch.is_tensor(self.mean_entropy) else self.mean_entropy,
-            'grad_norm': self.mean_grad_norm.cpu().item() if torch.is_tensor(self.mean_grad_norm) else self.mean_grad_norm,
-        }, dtype=np.float32)
-  ```
+* If you want to run A2C, A3C or PPO: *SLM-Lab/slm_lab/agent/__init__.py: update line 158-173*:
+```
+row = pd.Series({
+          'epi': self.env.clock.epi,
+          't': env.clock.t,
+          'wall_t': wall_t,
+          'opt_step': self.env.clock.opt_step,
+          'frame': frame,
+          'fps': fps,
+          'total_reward': total_reward,
+          'total_reward_ma': np.nan,  # update outside
+          'loss': self.loss.cpu().item() if torch.is_tensor(self.loss) else self.loss,
+          'lr': self.get_mean_lr(),
+          'explore_var': self.explore_var,
+          'entropy_coef': self.entropy_coef.cpu().item() if hasattr(self, 'entropy_coef') and torch.is_tensor(self.entropy_coef) else (self.entropy_coef if hasattr(self, 'entropy_coef') else np.nan),
+          'entropy': self.mean_entropy.cpu().item() if torch.is_tensor(self.mean_entropy) else self.mean_entropy,
+          'grad_norm': self.mean_grad_norm.cpu().item() if torch.is_tensor(self.mean_grad_norm) else self.mean_grad_norm,
+      }, dtype=np.float32)
+```
   
 ### Step 3: Google Colab workaround
 
-* SLM Lab needs a display to connect to. Run the following code in order to create a virtual display.
+* SLM Lab needs a display to connect to. Run the following code in order to create a virtual display [5]:
 ```
-# Start virtual display
 import pyvirtualdisplay
 
 _display = pyvirtualdisplay.Display(visible=False, size=(1400, 900))
@@ -102,12 +103,12 @@ _ = _display.start()
 
 ### Step 4: Running and Saving Results
 
-* Upload your config files to slm_lab/spec folder (demo.json file is also there)
+* Upload your config files to slm_lab/spec folder (demo.json file is also there).
 
 > [!TIP]
-> I saved them on Google Drive and copied them to the specified folder
+> I saved them on Google Drive and copied them to the specified folder.
 
-* Start using SLM Lab by running this command:
+* Start using SLM Lab by running this command [2]: 
   `!python run_lab.py {spec file} {spec name} {lab mode}`
 
 * The outputs are saved to *SLM-Lab/data* folder. I recommend saving the files to Google Drive, since all the data is lost from Google Colab when the session ends
@@ -122,8 +123,5 @@ _ = _display.start()
 2. SLM Lab. https://slm-lab.gitbook.io/slm-lab
 3. Reinforcement Learning Course, Prof. Dr. Habil. Eng. Călin-Adrian POPA, 2025
 4. Atari Mania ROM Collection: https://www.atarimania.com/rom_collection_archive_atari_2600_roms.html
-5. Gymnasium Documentation. https://gymnasium.farama.org/environments/atari/freeway/
-6. Atari Age. https://atariage.com/manual_html_page.php?SoftwareLabelID=192
-7. Internet Archive. https://archive.org/details/FreewayAtari2600900DPIScans
-8. Colab virtual screen. https://discuss.huggingface.co/t/colab-virtual-screen-in-reinforcement-learning-course/33427
+5. Colab virtual screen. https://discuss.huggingface.co/t/colab-virtual-screen-in-reinforcement-learning-course/33427
 
