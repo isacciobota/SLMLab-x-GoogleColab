@@ -116,6 +116,12 @@ _ = _display.start()
 > [!IMPORTANT]
 > Some algorithms might not run till finish on the free version of Google Colab. The problem is not the GPU/CPU, but the RAM memory. If you switch to Colab Pro, change runtime type to *High-RAM*.
 
+## Thank you
+I want to say a big thank you to the SLM Lab team for featuring my work in their official documentation. It's a big honor to contribute to such a valuable project.
+
+![slmlab_feature](https://github.com/isacciobota/SLMLab-x-GoogleColab/assets/80629738/dbd0f9e3-01f4-4472-adee-600b12993289)
+
+Link: https://slm-lab.gitbook.io/slm-lab/setup/installation
 
 ## Reference list
 
