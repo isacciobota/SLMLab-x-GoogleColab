@@ -121,7 +121,7 @@ _ = _display.start()
 
 1. SLM Lab Repository. https://github.com/kengz/SLM-Lab
 2. SLM Lab. https://slm-lab.gitbook.io/slm-lab
-3. Reinforcement Learning Course, Prof. Dr. Habil. Eng. Călin-Adrian POPA, 2025
+3. Reinforcement Learning Course, Prof. Dr. Habil. Eng. Călin-Adrian POPA, 2024
 4. Atari Mania ROM Collection: https://www.atarimania.com/rom_collection_archive_atari_2600_roms.html
 5. Colab virtual screen. https://discuss.huggingface.co/t/colab-virtual-screen-in-reinforcement-learning-course/33427
 
